@@ -64,5 +64,36 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     modules: contiene todos los modulos de la app
     shared: contiene todos los recursos que se suelen compartir entre modulos
 
+## Modulos
+    Referencia: https://angular.io/guide/architecture-modules
+    Para generar modulos ejecuto el comando:
+    `ng g m module_name` --> como no indico adonde quiero generarlo, esto genera un modulo dentro de la carpeta app(lo mismo aplica para componentes, directivas, etc)
+    `ng g m modules/module_name` --> esto genera un modulo dentro de la carpeta indicada
+    `ng g m modules/auth --routing` crea un modulo dentro de la carpeta modules llamado auth y tendra rounting
+    `ng g m shared/shared --flat` para no generar una carpeta dentro de otra
 
+## Lazy-loading
+    Fuente: https://angular.io/guide/lazy-loading-ngmodules
+    Video 16, seccion 4 explicacion de como ver lo que se va cargando en la app
 
+    Crear un componente dentro de un modulo
+    Ej: `ng g c modules/home/pages/homePage` esto crea dentro de modules/home una carpeta llamada pages y dentro de esta carpeta el componente
+
+    Generar alias: es para acortar paths de las importaciones
+        En el archivo tsconfig.json, dentro del objeeto "compilerOptions", crear una nueva propiedad llamada paths en donde se definen las rutas a distintas carpetas. Por ej:
+        `"paths": {
+            "@core/*": [
+                "src/app/core/*"
+            ],
+            "@modules/*": [
+                "src/app/modules/*"
+            ],
+            "@shared/*": [
+                "src/app/shared/*"
+            ],
+        }`
+
+        Luego al importar un componente que este dentro de alguna de esas rutas, puedo hacerlo por ej escribiendo:
+        `import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';` --> en este caso el componente sidebar esta dentro de la carpeta shared
+
+Avance: video 18, seccion 4
