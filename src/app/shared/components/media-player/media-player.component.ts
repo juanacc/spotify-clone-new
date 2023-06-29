@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./media-player.component.css']
 })
 export class MediaPlayerComponent {
+  mockCover: any = {
+    cover: '',
+    album: 'Gioli & Assia',
+    name: 'Bebe(Oficial)'
+  }
 
+  constructor(){}
 }
