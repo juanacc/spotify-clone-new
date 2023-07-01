@@ -4,9 +4,8 @@
     <div class="section--generic__player--zone">
         <ul class="player--list" [ngClass]="{'card-small' : mode === 'small', 'card-big' : mode === 'big'}">
             <li *ngFor="let track of dataTracks">
-                <!-- <app-card-player [track]="track" [mode]="mode"></app-card-player> -->
-                <!-- {{track | json}} -->
-                {{track.name}}
+                <app-card-player [track]="track" [mode]="mode"></app-card-player>
+                <!-- {{track | json}}-->
             </li>
         </ul>
     </div>
