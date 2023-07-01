@@ -96,4 +96,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         Luego al importar un componente que este dentro de alguna de esas rutas, puedo hacerlo por ej escribiendo:
         `import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';` --> en este caso el componente sidebar esta dentro de la carpeta shared
 
-Avance: video 21, seccion 4
+Avance: video 23, seccion 5
