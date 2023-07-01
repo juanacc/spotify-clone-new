@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,7 @@ export class SidebarComponent {
 
   customOptions: Array<any> = [];
 
-  constructor(){}
+  constructor(private router: Router){}
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -64,5 +65,17 @@ export class SidebarComponent {
       }
     ]
 
+  }
+
+  goTo($event: any):void{
+    //para navegar a una ruta pasandole parametros
+    this.router.navigate(['/', 'favorites'], {
+      queryParams: {
+        key1:'value1',
+        key2:'value2',
+        key3:'value3'
+      }
+    });
+    console.log($event);
   }
 }
