@@ -98,4 +98,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Rutas
     Ver ejemplos de llamada a rutas con parametros desde el html, ts en el componente sidebar.component.html y sidebar.component.ts
 
+## Directivas
+    dentro de shared/directives creo una directiva. En el selector de la directiva le agrego 'img' al nombre para que la misma solo pueda aplicarse a imagenes
 Avance: video 25, seccion 5

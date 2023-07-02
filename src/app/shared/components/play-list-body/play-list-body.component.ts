@@ -18,7 +18,7 @@ export class PlayListBodyComponent {
     this.tracks = data;
   }
 
-  changeSort(property:string):void{
+  changeSort(property: string): void{
     const {order} = this.optionSort;
     this.optionSort = {
       property,
