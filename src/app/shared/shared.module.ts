@@ -8,6 +8,7 @@ import { GenericSectionComponent } from './components/generic-section/generic-se
 import { PlayListHeaderComponent } from './components/play-list-header/play-list-header.component';
 import { PlayListBodyComponent } from './components/play-list-body/play-list-body.component';
 import { RouterModule } from '@angular/router';
+import { OrderListPipe } from './pipes/order-list.pipe';
 
 
 
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
     CardPlayerComponent,
     GenericSectionComponent,
     PlayListHeaderComponent,
-    PlayListBodyComponent
+    PlayListBodyComponent,
+    OrderListPipe
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { RouterModule } from '@angular/router';
     CardPlayerComponent,
     GenericSectionComponent,
     PlayListBodyComponent,
-    PlayListHeaderComponent
+    PlayListHeaderComponent,
+    OrderListPipe
   ]
 })
 export class SharedModule { }
