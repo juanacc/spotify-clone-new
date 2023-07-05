@@ -107,4 +107,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     https://www.learnrxjs.io/learn-rxjs/operators
     https://www.learnrxjs.io/learn-rxjs/operators/creation/of
 
-Avance: video 29, seccion 6
+## Seccionn 7 HttpClient
+    Fuente: https://stackoverflow.com/questions/74558182/angular-15-cli-does-not-create-environments-folder-when-creating-an-angular-proj
+    Las nuevas versiones de angular no traen por default la carpeta Environments, por lo cual hay que crearla ejecutando el siguiente comando:
+    `ng generate environments`
+    Esto crea la carpeta con los archivos de environment tanto para produccion como para desarrollo y tambien actualiza el archivo angular.json. Solo queda completar el objeto para cada uno de los ambietes:
+
+    Desarrollo:
+    `export const environment = {
+        production: false,
+        apiUrl: 'http://localhost:3000/api/1.0'
+    };`
+
+    Produccion:
+    `export const environment = {
+        production: true,
+        apiUrl: 'http://production_url_api'
+    };`
+
+Avance: video 30, seccion 7

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as dataRaw from '../../../../data/tracks.json';
+//import * as dataRaw from '../../../../data/tracks.json';
 import { TrackModel } from '@core/models/tracks.model';
 import { TrackService } from '@modules/tracks/services/track.service';
 import { Observable, Subscription } from 'rxjs';
@@ -24,26 +24,31 @@ export class TracksPageComponent {
     //const {data}: any = (dataRaw as any).default;// para poder obtener los datos al importar archivos json
     //this.mockTrackList = data;
 
-    const observerTrackTrendings$ = this.trackService.dataTracksTrending$.subscribe(response=> {
-      console.log('observer trending: ', response);
-      this.tracksTrending = response;
-      this.tracksRandom = response;
-      this.listObservers$.push(observerTrackTrendings$);
-      //this.listObservers$ =[observerTrackTrendings$];
-    })
+    // solo para la explicacion de los observables
+    // const observerTrackTrendings$ = this.trackService.dataTracksTrending$.subscribe(response=> {
+    //   console.log('observer trending: ', response);
+    //   this.tracksTrending = response;
+    //   this.tracksRandom = response;
+    //   this.listObservers$.push(observerTrackTrendings$);
+    //   //this.listObservers$ =[observerTrackTrendings$];
+    // })
 
-    const observerTrackRandom$ = this.trackService.dataTracksRandom$.subscribe(response=> {
-      console.log('observer radom: ', response);
-      //this.tracksRandom = response;
-      //this.listObservers$.push(observerTrackRandom$);
-      //this.listObservers$ =[observerTrackTrendings$];
-      this.tracksRandom = [...this.tracksRandom, ...response];//agrego a lo que ya tiene, lo que esta entrando
+    // const observerTrackRandom$ = this.trackService.dataTracksRandom$.subscribe(response=> {
+    //   console.log('observer radom: ', response);
+    //   //this.tracksRandom = response;
+    //   //this.listObservers$.push(observerTrackRandom$);
+    //   //this.listObservers$ =[observerTrackTrendings$];
+    //   this.tracksRandom = [...this.tracksRandom, ...response];//agrego a lo que ya tiene, lo que esta entrando
+    // })
+
+    this.trackService.getAllTracks$().subscribe(tracks => {
+      console.log('tracks', tracks);
     })
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.listObservers$.forEach(o=>o.unsubscribe());
+    //this.listObservers$.forEach(o=>o.unsubscribe());
   }
 }
