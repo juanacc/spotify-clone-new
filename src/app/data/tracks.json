@@ -3,7 +3,7 @@
             "_id": 1,
             "name": "Getting Over",
             "album": "One Love",
-            "cover": "https://_jenesaispop.com/wp-content/uploads/2009/09/guetta_onelove.jpg",
+            "cover": "https://jenesaispop.com/wp-content/uploads/2009/09/guetta_onelove.jpg",
             "artist": {
                 "name": "David Guetta",
                 "nickname": "David Guetta",
@@ -35,7 +35,7 @@
             "_id": 3,
             "name": "Calypso (Original Mix)",
             "album": "Round Table Knights",
-            "cover": "_https://cdns-images.dzcdn.net/images/cover/1db3f8f185e68f26feaf0b9d72ff1645/350x350.jpg",
+            "cover": "https://cdns-images.dzcdn.net/images/cover/1db3f8f185e68f26feaf0b9d72ff1645/350x350.jpg",
             "artist": {
                 "name": "Round Table Knights",
                 "nickname": "Round Table Knights",

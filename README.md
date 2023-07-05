@@ -101,4 +101,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Directivas
     dentro de shared/directives creo una directiva. En el selector de la directiva le agrego 'img' al nombre para que la misma solo pueda aplicarse a imagenes
 
-Avance: video 28, seccion 6
+## Programacion reactiva(rxjs)
+    https://osmancea.medium.com/programaci%C3%B3n-reactiva-con-rxjs-bebc9432485f
+    ver explicacion grafica en video 29 seccion 6
+    https://www.learnrxjs.io/learn-rxjs/operators
+    https://www.learnrxjs.io/learn-rxjs/operators/creation/of
+
+Avance: video 29, seccion 6
