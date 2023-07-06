@@ -125,4 +125,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         apiUrl: 'http://production_url_api'
     };`
 
-Avance: video 30, seccion 7
+Avance: video 31, seccion 7
