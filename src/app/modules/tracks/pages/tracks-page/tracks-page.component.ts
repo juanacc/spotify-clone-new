@@ -41,8 +41,14 @@ export class TracksPageComponent {
     //   this.tracksRandom = [...this.tracksRandom, ...response];//agrego a lo que ya tiene, lo que esta entrando
     // })
 
-    this.trackService.getAllTracks$().subscribe(tracks => {
+    this.trackService.getAllTracks$().subscribe((tracks: TrackModel[]) => {
       console.log('tracks', tracks);
+      this.tracksTrending = tracks;
+    })
+
+    this.trackService.getAllRandom$().subscribe((tracks: TrackModel[]) => {
+      console.log('tracks', tracks);
+      this.tracksRandom = tracks;
     })
   }
 
