@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
-import { Observable, map, mergeMap, of, tap } from 'rxjs';
+import { Observable, catchError, map, mergeMap, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 //import * as dataRaw from '../../../data/tracks.json';
 
@@ -64,7 +64,11 @@ export class TrackService {
   getAllRandom$(): Observable<any>{
     return this.httpClient.get(`${this.URL}/tracks`).pipe(
       mergeMap((data: any) => this.skipById(data.data, 2)),//el resultado de este mergeMap es la entrada del tap
-      tap(data => console.log('operador tap ', data))
+      tap(data => console.log('operador tap ', data)),
+      catchError(err => {
+        console.log('Algo salio mal', err)//para simular el error, hacer una peticion a una ruta inexistente por ej
+        return of([])
+      })
     );
   }
 }

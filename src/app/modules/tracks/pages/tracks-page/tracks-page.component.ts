@@ -40,12 +40,42 @@ export class TracksPageComponent {
     //   //this.listObservers$ =[observerTrackTrendings$];
     //   this.tracksRandom = [...this.tracksRandom, ...response];//agrego a lo que ya tiene, lo que esta entrando
     // })
+    this.loadDataAll();
+    this.loadDataRandom();
+  }
 
-    this.trackService.getAllTracks$().subscribe((tracks: TrackModel[]) => {
-      console.log('tracks', tracks);
-      this.tracksTrending = tracks;
-    })
+  // private loadDataAll(): void{
+  //   this.trackService.getAllTracks$().subscribe((tracks: TrackModel[]) => {
+  //     console.log('tracks', tracks);
+  //     this.tracksTrending = tracks;
+  //   })
+  // }
+  //tambien se puede manejar como una promesa
+  // private loadDataAll(): void{
+  //   this.trackService.getAllTracks$().toPromise()
+  //   .then(res => {
 
+  //   })
+  //   .catch(err => {
+  //     console.log('Hubo un error', err)
+  //   })
+  // }
+  //tambien se puede manejar con un await
+  private async loadDataAll(): Promise<any>{
+    this.tracksTrending = await this.trackService.getAllTracks$().toPromise();
+    //this.tracksRandom = await this.trackService.getAllRandom$().toPromise();
+    //console.log('Data raw con promesa ', dataRaw);
+  }
+
+  // private loadDataRandom(): void{
+  //   this.trackService.getAllRandom$().subscribe((tracks: TrackModel[]) => {
+  //     console.log('tracks', tracks);
+  //     this.tracksRandom = tracks;
+  //   }, err => {
+  //     console.log('Hubo un error')
+  //   })
+  // }
+  private loadDataRandom(): void{
     this.trackService.getAllRandom$().subscribe((tracks: TrackModel[]) => {
       console.log('tracks', tracks);
       this.tracksRandom = tracks;
