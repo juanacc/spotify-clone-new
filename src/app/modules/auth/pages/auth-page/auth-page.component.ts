@@ -1,6 +1,7 @@
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { Component } from '@angular/core';
 import { AuthService } from '@modules/auth/services/auth.service';
+//import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-auth-page',
@@ -9,8 +10,11 @@ import { AuthService } from '@modules/auth/services/auth.service';
 })
 export class AuthPageComponent {
   formLogin: FormGroup = new FormGroup({});
+  errorSeession: boolean = false;
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, 
+    //private cookie: CookieService
+    ){}
   
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -32,6 +36,13 @@ export class AuthPageComponent {
     //const body = this.formLogin.value;
     const {email, password} =this.formLogin.value;
     //console.log(body)
-    this.authService.sendCredentials(email, password);
+    this.authService.sendCredentials(email, password).subscribe(response =>{
+      console.log('Inicio de sesion OK', response);
+      //const {data, tokenSession} = response;
+      //this.cookie.set('token', tokenSession, 4, '/'); //creo una cookie valida por 4 dias y que aplica para toda la aplicacion('/')
+    }, err =>{
+      this.errorSeession = true;
+      console.log('Email o password erroneo');
+    });
   }
 }

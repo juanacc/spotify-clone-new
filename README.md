@@ -125,4 +125,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         apiUrl: 'http://production_url_api'
     };`
 
-Avance: video 32, seccion 7
+## Seccion 8 Manejo de cookies
+    Instalar NGX Cookie Service
+    https://www.npmjs.com/package/ngx-cookie-service
+        leer la documentacion para determinar el tiempo de expiracion de la cookie
+Avance: video 33, seccion 8
