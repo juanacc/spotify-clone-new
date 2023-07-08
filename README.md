@@ -129,4 +129,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     Instalar NGX Cookie Service
     https://www.npmjs.com/package/ngx-cookie-service
         leer la documentacion para determinar el tiempo de expiracion de la cookie
-Avance: video 34, seccion 8
+    
+    Interceptors:
+        indico en app.module.ts que usare interceptors
+        Para indicar que usare varios intercpetors, se puede setear la propiedad 'multi: true'
+Avance: video 35, seccion 8

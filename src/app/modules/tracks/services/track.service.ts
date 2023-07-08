@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { Observable, catchError, map, mergeMap, of, tap } from 'rxjs';
@@ -41,6 +41,17 @@ export class TrackService {
     })
   }
 
+  // getAllTracks$(): Observable<any>{
+  //   return this.httpClient.get(`${this.URL}/tracks`,{
+  //     headers: new HttpHeaders({
+  //       authorization: 'Baerer TOKEN'
+  //     })
+  //   }).pipe(
+  //     map((data: any) => {//se podria usar una intereface para el tipado
+  //       return data.data;        
+  //     })
+  //   );
+  // }
   getAllTracks$(): Observable<any>{
     return this.httpClient.get(`${this.URL}/tracks`).pipe(
       map((data: any) => {//se podria usar una intereface para el tipado

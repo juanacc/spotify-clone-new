@@ -1,6 +1,7 @@
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { Component } from '@angular/core';
 import { AuthService } from '@modules/auth/services/auth.service';
+import { Router } from '@angular/router';
 //import {CookieService} from 'ngx-cookie-service';
 
 @Component({
@@ -12,7 +13,8 @@ export class AuthPageComponent {
   formLogin: FormGroup = new FormGroup({});
   errorSeession: boolean = false;
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
+    private router: Router 
     //private cookie: CookieService
     ){}
   
@@ -38,6 +40,9 @@ export class AuthPageComponent {
     //console.log(body)
     this.authService.sendCredentials(email, password).subscribe(response =>{
       console.log('Inicio de sesion OK', response);
+      //this.router.navigate(['/', 'tracks'])
+      this.router.navigate(['tracks']);
+
       //const {data, tokenSession} = response;
       //this.cookie.set('token', tokenSession, 4, '/'); //creo una cookie valida por 4 dias y que aplica para toda la aplicacion('/')
     }, err =>{
