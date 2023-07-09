@@ -1,33 +1,35 @@
 <div class="content">
     <div class="row">
-        <div class="col-md-6" *ngIf="enabledAdd" [ngStyle]="{padding:'25px'}">
+        <div class="col-md-6" [ngStyle]="{'padding':'25px'}">
             <div class="col-md-12">
-                <h3>Agregar cancion</h3>
+                <h3>
+                    {{actionTitle}}
+                </h3>
             </div>
             <form [formGroup]="form" (ngSubmit)="addSong()" class="login-auth-form">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Cancion</label>
                             <input type="text" class="form-control" id="name"
                                 placeholder="Cancion" formControlName="name">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="album">Album</label>
                             <input type="text" class="form-control" id="album"
                                 placeholder="Album" formControlName="album">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="cover">Cover</label>
                             <input type="text" class="form-control" id="cover"
                                 placeholder="Cover" formControlName="cover">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="artist">Artista</label>
                             <input type="text" class="form-control" id="artist"
@@ -36,56 +38,23 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-action">
-                        <button [disabled]="form.invalid" class="login social-btn">Agregar cancion</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-6" *ngIf="enabledEdit" [ngStyle]="{padding:'25px'}">
-            <div class="col-md-12">
-                <h3>Editar cancion</h3>
-            </div>
-            <form [formGroup]="form" (ngSubmit)="addSong()" class="login-auth-form">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="name">Cancion</label>
-                            <input type="text" class="form-control" id="name"
-                                placeholder="Cancion" formControlName="name">
+                    <div class="col align-items-end">
+                        <div class="form-action">
+                            <button type="button" ngClass="btn btn-success" [disabled]="form.invalid" class="login social-btn" *ngIf="enabledAdd" (click)="sendEdition()" [ngStyle]="{cursor:'pointer'}">Agregar</button>
+                            <button type="button" ngClass="btn btn-success" [disabled]="form.invalid" class="login social-btn" *ngIf="enabledEdit" (click)="sendEdition()" [ngStyle]="{cursor:'pointer'}">Editar</button>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="album">Album</label>
-                            <input type="text" class="form-control" id="album"
-                                placeholder="Album" formControlName="album">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="cover">Cover</label>
-                            <input type="text" class="form-control" id="cover"
-                                placeholder="Cover" formControlName="cover">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="artist">Artista</label>
-                            <input type="text" class="form-control" id="artist"
-                                placeholder="Artista" formControlName="artist">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-action">
-                        <button [disabled]="form.invalid" class="login social-btn" (click)="sendEdition()" [ngStyle]="{cursor:'pointer'}">Editar cancion</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <div [ngStyle]="{'border-bottom': 'solid 1px var(--color-2)'}"></div>
     <div class="row mt-5">
+        <div class="col-md-12">
+            <h3 [ngStyle]="{'padding-left':'27px'}">
+                Borrar y editar canciones
+            </h3>
+        </div>
         <div class="play-list-body">
             <ul class="play-list-table-header">
                 <li>Nombre</li>
@@ -101,10 +70,10 @@
                     {{track.album}}
                 </li>
                 <li class="track-name-opacity">
-                    <i class="uil uil-trash" (click)="deleteSong(track)" [ngStyle]="{cursor: 'pointer', color: 'red'}"></i>
+                    <i class="uil uil-trash-alt" (click)="deleteSong(track)" [ngStyle]="{cursor: 'pointer', color: 'red', 'font-size': '20px'}"></i>
                 </li>
                 <li class="track-name-opacity">
-                    <i class="uil uil-edit" (click)="editSong(track)" [ngStyle]="{cursor: 'pointer', color: 'green'}"></i>
+                    <i class="uil uil-edit" (click)="editSong(track)" [ngStyle]="{cursor: 'pointer', color: 'green', 'font-size': '20px'}"></i>
                 </li>
         
             </ul>

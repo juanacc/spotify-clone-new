@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { TrackModel } from '@core/models/tracks.model';
 import { TrackService } from '@modules/tracks/services/track.service';
-import * as dataRaw from '../../../../data/tracks.json';
+//import * as dataRaw from '../../../../data/tracks.json';
 
 @Component({
   selector: 'app-admin-page',
@@ -13,13 +13,11 @@ export class AdminPageComponent {
   form: FormGroup = new FormGroup({});
   tracks: TrackModel[] = [];
   
-  name: string = 'pepe';
-  album: string = '';
-  cover: string = '';
-  artist: string = '';
-
   enabledEdit: boolean = false;
   enabledAdd: boolean = true;
+  actionTitle: string = '';
+  buttonActionTitle: string[] = ['Agregar canción', 'Editar canción'];
+
   constructor(private trackService: TrackService) {
 
   }
@@ -27,6 +25,9 @@ export class AdminPageComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    
+    this.actionTitle = this.buttonActionTitle[0];
+    
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -56,11 +57,13 @@ export class AdminPageComponent {
     console.log(this.form.value);
     this.enabledAdd = true;
     this.enabledEdit = false;
+    this.actionTitle = this.buttonActionTitle[0];
     this.form.reset();
   }
 
   editSong(track: any){
     console.log('Editar', track)
+    this.actionTitle = this.buttonActionTitle[1];
     this.enabledEdit = true;
     this.enabledAdd = false;
     
@@ -76,7 +79,10 @@ export class AdminPageComponent {
   }
   deleteSong(track: any){
     console.log('Borrar', track)
-    const {data}: any = (dataRaw as any).default;// para poder obtener los datos al importar archivos json
-    this.tracks = data;
+    //const {data}: any = (dataRaw as any).default;// para poder obtener los datos al importar archivos json
+    //this.tracks = data;
+    this.trackService.getAllTracks$().subscribe(tracks => {
+      this.tracks = tracks;
+    })
   }
 }
