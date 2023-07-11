@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { TrackModel } from '@core/models/tracks.model';
+import { AdminService } from '@modules/admin/services/admin.service';
 import { TrackService } from '@modules/tracks/services/track.service';
 //import * as dataRaw from '../../../../data/tracks.json';
 
@@ -16,9 +17,9 @@ export class AdminPageComponent {
   enabledEdit: boolean = false;
   enabledAdd: boolean = true;
   actionTitle: string = '';
-  buttonActionTitle: string[] = ['Agregar canción', 'Editar canción'];
+  buttonActionTitle: string[] = ['Agregar', 'Editar'];
 
-  constructor(private trackService: TrackService) {
+  constructor(private trackService: TrackService, private adminService: AdminService) {
 
   }
 
@@ -40,17 +41,55 @@ export class AdminPageComponent {
       ]),
       artist: new FormControl('', [
         Validators.required,
+      ]),
+      id: new FormControl('0', [
+        Validators.required,
       ])
     });
 
+    this.form.controls['id'].disable();
+
     //const {data}: any = (dataRaw as any).default;// para poder obtener los datos al importar archivos json
     this.trackService.getAllTracks$().subscribe(tracks => {
-      this.tracks = tracks;
+      console.log('papapapap', tracks)
+      this.tracks = tracks.reverse();
     });
   }
 
-  addSong(){
+  submitTrack(){
+    const {name, album, cover, artist, id} = this.form.value;
+    const track = {
+      name,
+      album,
+      cover,
+      artist,
+      id
+    };
+    
+    this.form.reset();
+    if(this.enabledAdd){
+      //console.log('NEW TRACK', track);
+      //this.adminService.addTrack$(track);
+      this.adminService.addTrack$(track).subscribe(res => {
+        //console.log('Result: ', res);
+        this.getAllTracks(); 
+      })
+    }      
+    else{
+      console.log('EDIT TRACK', track);
+      //lamar al servicio
+      this.adminService.editTrack$(track.id).subscribe(res => {
+        this.sendEdition();
+        this.getAllTracks();
+      });      
+    }
+  }
 
+  getAllTracks(){
+    this.trackService.getAllTracks$().subscribe(tracks => {
+      //console.log(tracks)
+      this.tracks = tracks.reverse();
+    });
   }
 
   sendEdition(){
@@ -61,7 +100,7 @@ export class AdminPageComponent {
     this.form.reset();
   }
 
-  editSong(track: any){
+  editTrack(track: any){
     console.log('Editar', track)
     this.actionTitle = this.buttonActionTitle[1];
     this.enabledEdit = true;
@@ -73,16 +112,18 @@ export class AdminPageComponent {
       name: track.name,
       album: track.album,
       cover: track.cover,
-      artist: track.artist.name
-   });
+      artist: track.artist,
+      id: track.uid
+    });
     
   }
-  deleteSong(track: any){
+  deleteTrack(track: any){
     console.log('Borrar', track)
     //const {data}: any = (dataRaw as any).default;// para poder obtener los datos al importar archivos json
     //this.tracks = data;
-    this.trackService.getAllTracks$().subscribe(tracks => {
-      this.tracks = tracks;
-    })
+    this.adminService.deleteTrack$(track.id).subscribe(res => {
+      console.log('Result: ', res);
+      this.getAllTracks();
+    });
   }
 }

@@ -55,6 +55,7 @@ export class TrackService {
   getAllTracks$(): Observable<any>{
     return this.httpClient.get(`${this.URL}/tracks`).pipe(
       map((data: any) => {//se podria usar una intereface para el tipado
+        //console.log('TRACKS EN SERVICIO', data.data)
         return data.data;        
       })
     );

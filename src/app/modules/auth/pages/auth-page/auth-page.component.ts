@@ -25,7 +25,7 @@ export class AuthPageComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.formLogin = new FormGroup({
-      email: new FormControl('test@test.com', [
+      email: new FormControl('admin@admin.com', [
         Validators.required,
         Validators.email
       ]),

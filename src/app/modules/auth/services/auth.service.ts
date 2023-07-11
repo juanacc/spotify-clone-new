@@ -21,10 +21,11 @@ export class AuthService {
       email,
       password
     };
-    //console.log('URL', this.URL);
+    console.log('URL', this.URL);
     return this.httpClient.post(`${this.URL}/auth/login`, body).pipe(
       tap((response:any) => {
         //this.userInSession.emit(response);
+        //console.log('RESPONSE', response.body)
         const {data, tokenSession} = response;
         this.cookie.set('token', tokenSession, 4, '/'); //creo una cookie valida por 4 dias y que aplica para toda la aplicacion('/')
         this.cookie.set('role', data.role, 4, '/');
