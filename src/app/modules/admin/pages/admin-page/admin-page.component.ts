@@ -3,7 +3,6 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { TrackModel } from '@core/models/tracks.model';
 import { AdminService } from '@modules/admin/services/admin.service';
 import { TrackService } from '@modules/tracks/services/track.service';
-//import * as dataRaw from '../../../../data/tracks.json';
 
 @Component({
   selector: 'app-admin-page',
@@ -13,6 +12,7 @@ import { TrackService } from '@modules/tracks/services/track.service';
 export class AdminPageComponent {
   form: FormGroup = new FormGroup({});
   tracks: TrackModel[] = [];
+  trackId: string = ""
   
   enabledEdit: boolean = false;
   enabledAdd: boolean = true;
@@ -77,8 +77,9 @@ export class AdminPageComponent {
     }      
     else{
       console.log('EDIT TRACK', track);
+      console.log('EDIT TRACK ID', this.trackId);
       //lamar al servicio
-      this.adminService.editTrack$(track.id).subscribe(res => {
+      this.adminService.editTrack$(this.trackId, track).subscribe(res => {
         this.sendEdition();
         this.getAllTracks();
       });      
@@ -113,15 +114,13 @@ export class AdminPageComponent {
       album: track.album,
       cover: track.cover,
       artist: track.artist,
-      id: track.uid
+      id: track.uid //como este campo esta desabilitado, se le asigna el valor pero el mismo no cambio en el formulario. Por esto uso la variable trackId
     });
-    
+    //console.log("FORMULARIO PARA EDITAR", this.form.value)
+    this.trackId = track.uid
   }
   deleteTrack(track: any){
-    console.log('Borrar', track)
-    //const {data}: any = (dataRaw as any).default;// para poder obtener los datos al importar archivos json
-    //this.tracks = data;
-    this.adminService.deleteTrack$(track.id).subscribe(res => {
+    this.adminService.deleteTrack$(track.uid).subscribe(res => {
       console.log('Result: ', res);
       this.getAllTracks();
     });

@@ -23,8 +23,9 @@ export class AdminService {
     return this.httpClient.delete(`${this.URL}/tracks/delete/${id}`);
   }
 
-  editTrack$(id: string): Observable<any>{
-    console.log('admin service id', id);
-    return this.httpClient.delete(`${this.URL}/tracks/edit/${id}`);
+  editTrack$(id: string, track: any): Observable<any>{
+    console.log('admin service edit id', id);
+    console.log('admin service edit track', track);
+    return this.httpClient.put(`${this.URL}/tracks/edit/${id}`, track);
   }
 }
