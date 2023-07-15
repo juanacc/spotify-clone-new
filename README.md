@@ -142,4 +142,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
     Para evitar el encolado de peticiones por ej en una conexion lenta, podemos usar el pipe async. Lo que esto hace es quedarse con la ultima peticion, sin importar las anteriores
     (ver history-page-component.ts y history-page-component.html) 
-Avance: video 37, seccion 9
+
+    Observables--> explicacion en video 38, seccion 9
+        para usar Observables, necesitamos un observer
+    Observable subject--> explicacion en video 39, seccion 9
+        el subject es un tipo de observable que es a la vez observer, por lo tanto al usar subject no es necesario tener un observer
+        Para usar el subject dentro del componente primero debo subscribirme y luego usar la informacion
+    Observable behavior subject-->explicacion en video 39, seccion 9
+        Al behavior subject necesitamos inicializarlo. El behavior subject tambien es un observable y un observer a la vez
+
+Avance: video 39, seccion 9

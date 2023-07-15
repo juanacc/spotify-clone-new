@@ -24,11 +24,19 @@ export class MediaPlayerComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    const observer1$: Subscription = this.multimediaService.callback.subscribe((response: TrackModel) => {
-      console.log('desde multimedia service', response)
-    });
+    
+    // const observer1$: Subscription = this.multimediaService.callback.subscribe((response: TrackModel) => {
+    //   console.log('desde multimedia service', response)
+    // });
+    // this.listObservers$.push(observer1$);
 
-    this.listObservers$.push(observer1$);
+    const observable1$ = this.multimediaService.myObservable1$.subscribe((resOk) => {
+        //next()
+        console.log("EL AGUA LLEGA PERFECTO: ", resOk);
+    },(resFail) => {
+      //error()
+      console.log("SE TAPO LA TUBERIA:", resFail);
+    })
   }
 
   ngOnDestroy(): void {
