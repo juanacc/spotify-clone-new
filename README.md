@@ -151,4 +151,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     Observable behavior subject-->explicacion en video 39, seccion 9
         Al behavior subject necesitamos inicializarlo. El behavior subject tambien es un observable y un observer a la vez
 
-Avance: video 39, seccion 9
+    Audio AHTML
+        https://www.w3schools.com/tags/ref_av_dom.asp
+    Arrows function javascript
+        https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+Avance: video 41, seccion 10
