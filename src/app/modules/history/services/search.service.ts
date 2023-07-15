@@ -11,9 +11,13 @@ export class SearchService {
   constructor(private httpClient: HttpClient) { }
 
   searchTracks$(term: string): Observable<any> {
-    return this.httpClient.get(`${this.URL}/tracks?src=${term}`)
+    // return this.httpClient.get(`${this.URL}/tracks?src=${term}`)
+    // .pipe(
+    //   map((dataRaw:any) => dataRaw.data)
+    // )
+    return this.httpClient.get(`${this.URL}/tracks/${term}`)
     .pipe(
-      map((dataRaw:any) => dataRaw.data)
+      map((dataRaw:any) => dataRaw.data.length > 0 ? dataRaw.data : [])
     )
   }
 }

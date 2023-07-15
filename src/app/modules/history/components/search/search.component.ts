@@ -10,9 +10,14 @@ export class SearchComponent {
   src : string = '';
 
   search(term: string): void{
-    if(term.length > 3){ 
-      console.log('TERMINO', term);
-      this.callBackData.emit(term);
-    }
+    // if(term.length > 3){ 
+    //   //console.log('TERMINO', term);
+    //   this.callBackData.emit(term);
+    // }
+    // else{
+    //   //console.log('NO HAY TERMINO DE BUSQUEDA EN SEARCH COMPONENT');
+    //   this.callBackData.emit('');
+    // }
+    term.length > 3 ? this.callBackData.emit(term) : this.callBackData.emit(''); 
   }
 }

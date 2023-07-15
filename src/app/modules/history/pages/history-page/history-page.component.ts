@@ -23,8 +23,12 @@ export class HistoryPageComponent {
     //   console.log('RESPUESTA DEL SERVICIO DE BUSQUEDA', data);
     //   this.listResult$ = data;
     // })
-
-    this.listResult$ = this.searchService.searchTracks$(event);// cuando uso el pipe async no es necesario usar el subscribe ya que el ya se esta subscribiendo
+    if(event.length == 0){
+      //console.log('NO HAY TERMINO DE BUSQUEDA EN HISTORY PAGE COMPONENT');
+      this.listResult$ = of([])
+    }
+    else
+      this.listResult$ = this.searchService.searchTracks$(event);// cuando uso el pipe async no es necesario usar el subscribe ya que el ya se esta subscribiendo
   }
 
 }
