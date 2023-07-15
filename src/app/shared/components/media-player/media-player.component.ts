@@ -9,17 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./media-player.component.css']
 })
 export class MediaPlayerComponent {
-  mockCover: TrackModel = {
-    cover: '',
-    album: 'Gioli & Assia',
-    name: 'Bebe(Oficial)',
-    url: '',
-    _id: '1'
-  }
+  //track!: TrackModel;
 
   listObservers$: Subscription[] = [];
 
-  constructor(private multimediaService: MultimediaService){}
+  constructor(public multimediaService: MultimediaService){}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -30,13 +24,19 @@ export class MediaPlayerComponent {
     // });
     // this.listObservers$.push(observer1$);
 
-    const observable1$ = this.multimediaService.myObservable1$.subscribe((resOk) => {
-        //next()
-        console.log("EL AGUA LLEGA PERFECTO: ", resOk);
-    },(resFail) => {
-      //error()
-      console.log("SE TAPO LA TUBERIA:", resFail);
-    })
+    // const observable1$ = this.multimediaService.myObservable1$.subscribe((resOk) => {
+    //     //next()
+    //     console.log("EL AGUA LLEGA PERFECTO: ", resOk);
+    // },(resFail) => {
+    //   //error()
+    //   console.log("SE TAPO LA TUBERIA:", resFail);
+    // })
+
+    // const observer1$ = this.multimediaService.trackInfo$.subscribe(track=>{
+    //   console.log('debo reproducir la cancion: ', track);
+    //   this.track = track;
+    // })
+    // this.listObservers$.push(observer1$);
   }
 
   ngOnDestroy(): void {
