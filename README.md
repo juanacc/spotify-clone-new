@@ -133,4 +133,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     Interceptors:
         indico en app.module.ts que usare interceptors
         Para indicar que usare varios intercpetors, se puede setear la propiedad 'multi: true'
-Avance: video 35, seccion 8
+
+## Seccion 9
+    Para simular una conexion lenta a internet:
+        F12
+        Click en solapa Network
+        En desplegable throttling, seleccionar por ej Slow 3G. Tambien puedo simular que estoy offline, hacer una customizacion, etec
+
+Avance: video 36, seccion 9
