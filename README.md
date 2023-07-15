@@ -140,4 +140,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         Click en solapa Network
         En desplegable throttling, seleccionar por ej Slow 3G. Tambien puedo simular que estoy offline, hacer una customizacion, etec
 
-Avance: video 36, seccion 9
+    Para evitar el encolado de peticiones por ej en una conexion lenta, podemos usar el pipe async. Lo que esto hace es quedarse con la ultima peticion, sin importar las anteriores
+    (ver history-page-component.ts y history-page-component.html) 
+Avance: video 37, seccion 9
