@@ -12,6 +12,7 @@ export class MediaPlayerComponent {
   //track!: TrackModel;
 
   listObservers$: Subscription[] = [];
+  state: string = 'paused';
 
   constructor(public multimediaService: MultimediaService){}
 
@@ -37,6 +38,9 @@ export class MediaPlayerComponent {
     //   this.track = track;
     // })
     // this.listObservers$.push(observer1$);
+
+    const observer1$ = this.multimediaService.playerStatus$.subscribe(status=> this.state = status);
+    this.listObservers$.push(observer1$);
   }
 
   ngOnDestroy(): void {

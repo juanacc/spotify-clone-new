@@ -156,4 +156,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     Arrows function javascript
         https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 
-Avance: video 41, seccion 10
+Avance: video 43, seccion 10

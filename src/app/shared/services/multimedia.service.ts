@@ -15,6 +15,8 @@ export class MultimediaService {
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined);
   public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00');
   public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject('-00:00');
+  public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused');
+  public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor() {
     //#region  
@@ -75,18 +77,42 @@ export class MultimediaService {
   }
 
   private setAudio(track: TrackModel): void{
-    console.log('DESDE MULTIMEDIA SERVICE:', track);
+    //console.log('DESDE MULTIMEDIA SERVICE:', track);
     this.audio.src = track.url;
     this.audio.play();
   }
 
   //private calculateTime(): void{//no funciona como una funcion normal
-    private calculateTime = () => {
-    console.log('disparando evento');
+  private calculateTime = () => {
+    //console.log('disparando evento');
     const {duration, currentTime} = this.audio;
-    console.table([duration,currentTime]);
+    //console.table([duration,currentTime]);
     this.setTimeElapsed(currentTime);
     this.setTimeRemaining(currentTime, duration);
+    this.setPercentage(currentTime, duration);
+  }
+
+  private setPercentage(currentTime: number, duration: number): void {
+    let percentage = (currentTime * 100) / duration;
+    this.playerPercentage$.next(percentage);
+  }
+
+  private setPlayerStatus = (state: any) => {
+    //console.log('STATE: ', state);
+    switch(state.type){
+      case 'play':
+        this.playerStatus$.next('play');
+        break;
+      case 'playing':
+        this.playerStatus$.next('playing');
+        break;
+      case 'ended':
+        this.playerStatus$.next('ended');
+        break;
+      default:
+        this.playerStatus$.next('paused');
+        break;
+    }
   }
 
   private setTimeElapsed(currentTime: number): void {
@@ -111,8 +137,16 @@ export class MultimediaService {
 
   }
 
+  public togglePlayer(): void{
+    this.audio.paused ? this.audio.play() : this.audio.pause();
+  }
+
   private listenAllEvents(): void{
-    this.audio.addEventListener('timeupdate', this.calculateTime, false)
+    this.audio.addEventListener('timeupdate', this.calculateTime, false);
+    this.audio.addEventListener('playing', this.setPlayerStatus, false);
+    this.audio.addEventListener('play', this.setPlayerStatus, false);
+    this.audio.addEventListener('pause', this.setPlayerStatus, false);
+    this.audio.addEventListener('ended', this.setPlayerStatus, false);
   }
 
 }
