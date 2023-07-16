@@ -149,4 +149,10 @@ export class MultimediaService {
     this.audio.addEventListener('ended', this.setPlayerStatus, false);
   }
 
+  public seekAudio(percentage: number): void {
+    const {duration} = this.audio;
+    const percentageToSecond = (percentage * duration) / 100;
+    this.audio.currentTime = percentageToSecond;
+  }
+
 }
