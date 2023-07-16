@@ -17,18 +17,20 @@ export class HistoryPageComponent {
 
   }
 
-  receiveData(event: string): void{
-    console.log("EN HISTORY PAGE", event);
+  receiveData(term: string): void{
+    //console.log("EN HISTORY PAGE", term);
     // this.searchService.searchTracks$(event).subscribe(({data}) => {
     //   console.log('RESPUESTA DEL SERVICIO DE BUSQUEDA', data);
     //   this.listResult$ = data;
     // })
-    if(event.length == 0){
-      //console.log('NO HAY TERMINO DE BUSQUEDA EN HISTORY PAGE COMPONENT');
-      this.listResult$ = of([])
-    }
-    else
-      this.listResult$ = this.searchService.searchTracks$(event);// cuando uso el pipe async no es necesario usar el subscribe ya que el ya se esta subscribiendo
+    // if(term.length == 0){
+    //   //console.log('NO HAY TERMINO DE BUSQUEDA EN HISTORY PAGE COMPONENT');
+    //   this.listResult$ = of([])
+    // }
+    // else
+    //   this.listResult$ = this.searchService.searchTracks$(term);// cuando uso el pipe async no es necesario usar el subscribe ya que el ya se esta subscribiendo
+    
+    this.listResult$ = (term.length == 0) ? of([]) : this.searchService.searchTracks$(term);
   }
 
 }

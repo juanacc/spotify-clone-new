@@ -49,8 +49,8 @@ export class SidebarComponent {
         router: ['/', 'history']
       },
       {
-        name: 'Tu biblioteca',
-        icon: 'uil uil-chart',
+        name: 'Favoritos',
+        icon: 'uil uil-heart',
         router: ['/', 'favorites'],
         //query: { hola: 'mundo' }
       }
